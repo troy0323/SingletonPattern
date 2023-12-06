@@ -1,0 +1,38 @@
+package singletonPattern;
+
+import java.util.Scanner;
+
+public class UserApp {
+    public static void main(String[] args){
+
+        CentralizedQueuingSystem queuingSystem = CentralizedQueuingSystem.getInstance();
+
+
+        HelpDeskStation helpDeskStation1 = new HelpDeskStation(queuingSystem);
+        HelpDeskStation helpDeskStation2 = new HelpDeskStation(queuingSystem);
+
+
+        System.out.print("Enter your name: ");
+        Scanner scanner = new Scanner(System.in);
+        String visitorName = scanner.nextLine();
+        int visitorQueueNumber = queuingSystem.getQueueNumber();
+        System.out.println(visitorName + ", you obtained queue number: " + visitorQueueNumber);
+
+
+        int currentQueueNumber = queuingSystem.getQueueNumber();
+        System.out.println("Current queued number (online monitoring): " + currentQueueNumber);
+
+
+        System.out.print("Enter the new queue number: ");
+        int newQueueNumber = scanner.nextInt();
+        queuingSystem.resetQueueNumber(newQueueNumber);
+
+
+        helpDeskStation1.serveCustomer();
+
+        helpDeskStation2.serveCustomer();
+
+
+        scanner.close();
+    }
+}
