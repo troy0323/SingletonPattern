@@ -1,0 +1,22 @@
+package singletonPattern;
+
+import java.util.Scanner;
+
+public class HelpDeskStation {
+
+    private CentralizedQueuingSystem queuingSystem;
+
+    public HelpDeskStation(CentralizedQueuingSystem queuingSystem) {
+        this.queuingSystem = queuingSystem;
+    }
+
+    public void serveCustomer() {
+        int currentQueueNumber = queuingSystem.getQueueNumber();
+        System.out.println("Help desk serving customer with queue number: " + currentQueueNumber);
+    }
+
+    public void resetQueueNumber(int newQueueNumber) {
+        queuingSystem.resetQueueNumber(newQueueNumber);
+    }
+}
+
