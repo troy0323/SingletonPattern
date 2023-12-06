@@ -1,0 +1,30 @@
+package singletonPattern;
+
+import java.util.Scanner;
+
+public class CentralizedQueuingSystem {
+
+    private static CentralizedQueuingSystem instance;
+    private int currentQueueNumber;
+
+    private CentralizedQueuingSystem() {
+        
+        currentQueueNumber = 1; // Starting queue number
+    }
+
+    public static synchronized CentralizedQueuingSystem getInstance() {
+        if (instance == null)
+            instance = new CentralizedQueuingSystem();
+        return instance;
+    }
+
+    public synchronized int getQueueNumber() {
+        return currentQueueNumber;
+    }
+
+    public synchronized void resetQueueNumber(int newQueueNumber) {
+        currentQueueNumber = newQueueNumber;
+        System.out.println("Queue number reset to: " + newQueueNumber);
+    }
+}
+
